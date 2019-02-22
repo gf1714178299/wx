@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import '../contacts_page.dart'show AppColors;
+import '../contacts_page.dart' show AppColors;
 
 enum Device { MAC, WIN }
+
 class Conversation {
-const Conversation({
-  @required this.avatar,
-  @required this.title,
-  this.titleColor:AppColors.TitleTextColor,
-  this.des,
-  @required this.updateAt,
-  this.isMute:false,
-  this.unreadMsgCount :0,
-  this.displayDot:false
-}) :  assert(avatar != null),
-      assert(title != null),
-      assert(updateAt != null);
+  const Conversation(
+      {@required this.avatar,
+      @required this.title,
+      this.titleColor: AppColors.TitleTextColor,
+      this.des,
+      @required this.updateAt,
+      this.isMute: false,
+      this.unreadMsgCount: 0,
+      this.displayDot: false})
+      : assert(avatar != null),
+        assert(title != null),
+        assert(updateAt != null);
 
   final String avatar;
   final String title;
@@ -25,18 +26,36 @@ const Conversation({
   final int unreadMsgCount;
   final bool displayDot;
 
-  bool isAvatarFromNet(){
-      if(this.avatar.indexOf('http') == 0 ||
-        this.avatar.indexOf('https') == 0){
-          return true;
-      }
-        return false;
+  bool isAvatarFromNet() {
+    if (this.avatar.indexOf('http') == 0 || this.avatar.indexOf('https') == 0) {
+      return true;
+    }
+    return false;
   }
-
 }
 
-const List<Conversation> mockConversations = [
-  const Conversation(
+/* const Map<String, List<Conversation>> mockConversationData = {
+  'diviceInfo': null,
+  'conversations': mockConversations,
+}; */
+
+//Json
+
+class ConversationPageData {
+  const ConversationPageData({
+    this.device,
+    this.conversations,
+  });
+
+  final Device device;
+  final List<Conversation> conversations;
+
+  static mock() {
+    return ConversationPageData(device: Device.WIN, conversations: mockConversations);
+  }
+
+  static List<Conversation> mockConversations = [
+    const Conversation(
       avatar: 'assets/images/ic_file_transfer.png',
       title: '文件传输助手',
       des: '',
@@ -134,9 +153,5 @@ const List<Conversation> mockConversations = [
       isMute: false,
       unreadMsgCount: 0,
     ),
-];
-
-const Map<String,List<Conversation>> mockConversationData = {
-  'diviceInfo':null,
-  'conversations':mockConversations,
-};
+  ];
+}
