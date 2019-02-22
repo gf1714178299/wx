@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './contacts_page.dart' show Constants, AppColors;
-
+import '../contacts_page.dart' show Constants, AppColors;
+import 'conversation_page.dart';
 enum ActionItems { GROUP_CHAT, ADD_FRIEND, QR_SCAN, PAYMENT, HELP }
 
 class NavigationIconView {
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
     _pageController =PageController(initialPage: _currentIndex);
     _pages = [
-      Container(color: Colors.red),
+      ConversationPage(),
       Container(color: Colors.green),
       Container(color: Colors.yellow),
       Container(color: Colors.orange),
