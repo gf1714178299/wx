@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../contacts_page.dart'show AppColors;
+
+enum Device { MAC, WIN }
 class Conversation {
 const Conversation({
   @required this.avatar,
@@ -133,3 +135,8 @@ const List<Conversation> mockConversations = [
       unreadMsgCount: 0,
     ),
 ];
+
+const Map<String,List<Conversation>> mockConversationData = {
+  'diviceInfo':null,
+  'conversations':mockConversations,
+};
